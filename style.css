@@ -74,7 +74,7 @@ body {
     background: #ff9501;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 414px) {
     .calc {
         width: 414px;
         height: 896px;
