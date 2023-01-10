@@ -2,6 +2,7 @@ let a = ''
 let b = ''
 let sign = ''
 let result  = false;
+let lastBtn = ''
 
 const allNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const actions = ['-', '+', 'x', '/', '=', '+/-', '%'];
@@ -14,6 +15,12 @@ function clearAll() {
     sign = ''
     result = false
     out.textContent = 0
+    if (lastBtn !== '' && lastBtn !== event.target) {
+        lastBtn.style.color = '#fff'
+        lastBtn.style.backgroundColor = '#ff9501'
+
+        lastBtn = ''
+    }
 }
 
 document.querySelector('.ac').onclick = clearAll;
@@ -21,10 +28,6 @@ document.querySelector('.ac').onclick = clearAll;
 document.querySelector('.buttons').onclick = (event) => {
     if (allNumbers.includes(event.target.textContent) || actions.includes(event.target.textContent)) {
         const correctBtn = event.target.textContent
-
-        if (correctBtn !== '+/-' && correctBtn !== '%') {
-            out.textContent = ''
-        }
 
         if (allNumbers.includes(correctBtn)) {
             if (a === '' || sign === '') {
@@ -43,6 +46,24 @@ document.querySelector('.buttons').onclick = (event) => {
         }
 
         if (actions.includes(correctBtn) && correctBtn !== '=' && correctBtn !== '+/-' && correctBtn !== '%') {
+            event.target.style.backgroundColor = '#fff'
+            event.target.style.color = '#ff9501'
+
+            console.log(out.textContent, 'часть со содержимым')
+
+            if (lastBtn !== '' && lastBtn !== event.target) {
+                lastBtn.style.color = '#fff'
+                lastBtn.style.backgroundColor = '#ff9501'
+
+                lastBtn = event.target
+            } else {
+                lastBtn = event.target
+            }
+
+            if (a === '') {
+                a = 0
+            }
+
             if (b !== '') {
                 let result
     
@@ -66,13 +87,18 @@ document.querySelector('.buttons').onclick = (event) => {
                 b = ''
             }
             sign = correctBtn;
-            out.textContent = sign;
+            console.log(a, b, 'часть со знаком')
             
             return;
         }
 
         if (correctBtn === '=') {
-            console.log(a, b, sign, 'часть с равно')
+            if (a === '') {
+                a = 0
+            }
+
+            console.log(a, b, sign, 'сто двадцать')
+
             if (b === '') {
                 b = +a
             }
@@ -95,6 +121,15 @@ document.querySelector('.buttons').onclick = (event) => {
 
             result = true
             out.textContent = a
+
+            if (lastBtn !== '' && lastBtn !== event.target) {
+                lastBtn.style.color = '#fff'
+                lastBtn.style.backgroundColor = '#ff9501'
+
+                lastBtn = ''
+            }
+        
+            console.log(a, b, sign, 'часть с равно')
         }
 
         if (correctBtn === '+/-') {

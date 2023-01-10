@@ -1,22 +1,15 @@
-/* 
-    colors
-    bg #000
-    orange #ff9501
-    grey #a6a6a6
-    white #fdfdfd
-*/
-
+body {
+    margin: 0;
+}
 .calc {
     margin: 50px auto;
     width: 300px;
     height: 500px;
-    /* border:1px solid #000; */
     border-radius: 20px;
     background: #000;
     color: #fff;
     font-family: Arial;
-    padding: 18px;
-    box-shadow: 4px 4px 4px #4f4f4f;
+    padding: 18px; 
 }
 
 .calc-screen {
@@ -79,4 +72,33 @@
 
 .btn.bg-orange {
     background: #ff9501;
+}
+
+@media screen and (max-width: 640px) {
+    .calc {
+        width: 414px;
+        height: 896px;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+    }
+    .btn {
+        width: 80px;
+        height: 80px;
+        font-size: 28px;
+        line-height: 80px;
+    }
+    .btn.zero {
+        width: 90%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .buttons {
+        margin-top: 210px;
+    }
+    .calc-screen p {
+        margin-top: 220px;
+        margin-right: 10px;
+        font-size: 5rem;
+    }
 }
